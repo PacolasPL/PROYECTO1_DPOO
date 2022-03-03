@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>384</y>
+      <w>152</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Proyecto&gt;&gt;
+--
+- nombre: String
+- descripcion: String
+- fechaDeCreacion: String
+- fechaEstimada: String
+- integrantes: []
+- integranteLider: Integrante
+- actividadesRealizadas: []
+- terminado: bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>872</x>
+      <y>184</y>
+      <w>192</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Integrante&gt;&gt;
+--
+- nombre: String
+- correo: String
+- actividades: List&lt;Actividades&gt;
+--
++ registrarActividad(): void
++ editarActividad(): void
++ mostrarEstadisticas():String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>376</y>
+      <w>304</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Actividad&gt;&gt;
+--
+- titulo: String
+- Estado: String
+- descripcion: String
+- tipoDeActividad: String
+- fechaDeDesarrollo: String
+- horaDeInicio: String
+- horaDeFin: String
+- tiempoTranscurrido: float
+- participantes: List&lt;Integrante&gt;
+--
+- calcularTiempo(horaDeInicio, horaDeFin): void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>80</y>
+      <w>336</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>Manejo_de_Proyecto
+--
+- proyectoActual: proyecto
+- listaActividades: Lista&lt;Actividad&gt;
+- tiempoTranscurrido: int
+- integrantes: Hashmap&lt;String, integrante&gt;
+--
++ añadirIntegranteLider():void
++ cambiarLider(): void
++ añadirParticipante(): void
++ pausarCronometro(): void
++ continuarCronometro(): void
++ listarActividades(): void
++ mostrarTiempoInvertido(Integrante integrante): void
+- calcularTiempoTranscurrido(): voud
+- generarStringSegunActividad(actividad): String
+- filtrarActividadesPorParticipante(): Hashmap&lt;String, List&lt;Actividades&gt; &gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>288</y>
+      <w>152</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;80.0;170.0;80.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>816</x>
+      <y>328</y>
+      <w>144</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;160.0;150.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>544</y>
+      <w>264</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>310.0;10.0;310.0;60.0;10.0;60.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>288</y>
+      <w>184</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>210.0;120.0;210.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>368</y>
+      <w>504</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;260.0;10.0;340.0;610.0;340.0;610.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>128</y>
+      <w>120</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>130.0;150.0;80.0;150.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>176</x>
+      <y>88</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Aplicacion
+--
+main(String[] args):void
+iniciarAplicacion():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>104</y>
+      <w>120</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>32</y>
+      <w>192</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;IntegranteLider&gt;&gt;
+--
+- nombre: String
+- correo: String
+- actividades: List&lt;Actividad&gt;
+--
++ crearProyecto(): void
++ editarProyecto(): void
++ registrarActividad(): void
++ editarActividad(): void
++ registrarEstudiante(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>104</y>
+      <w>128</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1216</x>
+      <y>120</y>
+      <w>168</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>integrante
+--
+- nombre: String
+- correo: String
+--
++ generarStringDesempenyo():String
+- calcularTiempoInvertido(): float
+- generarStringTiempoPorDia():String
+- calcularPromedioTiempoPorTipo(): float
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1064</x>
+      <y>96</y>
+      <w>264</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;310.0;10.0;310.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>232</y>
+      <w>264</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;30.0;310.0;30.0;310.0;10.0</additional_attributes>
+  </element>
+</diagram>
