@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>658</x>
+      <y>203</y>
+      <w>147</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Proyecto
+--
+- nombre: String
+- creador: lider
+- descripcion: String
+- fechaDeCreacion: String
+- fechaEstimada: String
+- integrantes: []
+- actividadesRealizadas: []
+- terminado: bool
+--
++ ActualizarAvance(registro): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>742</x>
+      <y>357</y>
+      <w>147</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>Lider
+--
+- Nombre: String
+- actividadesAsignadas: Actividad[]
+--
++ CalcularTiempoTrabajo(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>175</x>
+      <y>70</y>
+      <w>175</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>Integrante
+--
+- Nombre: String
+- actividadesAsignadas: Actividad[]
+- ActividadesRealizadasÑ Actividad[]
+- RegistroDeActividad: Actividad[]
+- correo: String
+--
++ CalcularRegistro(): String
++ RealizarActividad(actividad):String
++ </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>448</x>
+      <y>301</y>
+      <w>203</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Actividad
+--
+- Finalizada: Bool
+- Nombre: String
+- aCargoDe: Integrante
+- Tipo de Actividad: TipoDeActividad
+- FechaInicio: String
+- FechaEstimadaÑ String
+- FechaFinalÑ String
+--
++ aproximarTiempoTomado(horaDeInicio, horaDeFin): void
++ CalcularTiempo(): String
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>553</x>
+      <y>238</y>
+      <w>119</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>385</x>
+      <y>28</y>
+      <w>238</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>Aplicacion
+--
+- proyecto: proyecto
+- admin: lider
+--
++ main(String[] args): void
++ mostrarMenu(): void
++ IniciarProyecto(): void
++ ejecutarOpcion(int opcionSeleccionada): void
++ registrarseComoEstudiante(int seleccionEstudiante): void
++ pausarCronometro(): void
++ continuarCronometro(): void
++ listarActividades(): void
++ mostrarTiempoInvertido(Integrante integrante): void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>112</y>
+      <w>238</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Esta compuesto de</panel_attributes>
+    <additional_attributes>200.0;130.0;200.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>350</y>
+      <w>147</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>Registro de Actividad
+--
+registro: Registro[]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>728</x>
+      <y>56</y>
+      <w>147</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>Loader
+--
+- CargarDatos(archivo String): void
+- escribirDatos(datos): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>448</x>
+      <y>455</y>
+      <w>175</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>TipoDeActividad
+--
+tipo: String
+aspectosATomarEncuenta: String[]
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>238</x>
+      <y>434</y>
+      <w>147</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>Registro
+--
+Autor: Integrante
+Descripcion: String
+Fecha: String
+Hora: String
+--
++ CalcularTiempo(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>315</x>
+      <y>392</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>266</y>
+      <w>42</w>
+      <h>217</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>40.0;290.0;10.0;290.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>420</y>
+      <w>105</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Esta compuesto de:</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>63</y>
+      <w>126</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>798</x>
+      <y>245</y>
+      <w>42</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>40.0;160.0;40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>343</x>
+      <y>224</y>
+      <w>329</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;450.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>182</x>
+      <y>266</y>
+      <w>651</w>
+      <h>294</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;400.0;910.0;390.0;910.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>196</x>
+      <y>266</y>
+      <w>651</w>
+      <h>308</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;420.0;910.0;410.0;910.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>371</x>
+      <y>231</y>
+      <w>301</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Esta compuesto de:</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0;410.0;10.0</additional_attributes>
+  </element>
+</diagram>
