@@ -5,42 +5,86 @@ import java.time.*;
 
 public class proyecto {
 	private integrante Lider;
-	private HashMap<String, integrante> integrantes;
+	private String Name;
+	private HashMap<String, integrante> integrantes = new HashMap<String, integrante>();
 	private LocalDateTime fechaInicio;
 	private int tiempoTranscurrido;
 	private boolean Terminado;
-	private HashMap<String, actividad> actividades;
-	private HashMap<String, actividad> actividadesFinalizadas;
+	private HashMap<String, ArrayList<actividad>> actividades = new HashMap<String, ArrayList<actividad>>();
+	private HashMap<String, ArrayList<actividad>> actividadesFinalizadas = new HashMap<String, ArrayList<actividad>>();
+	private registroActividad registros;
 	
 	
-	public proyecto(integrante Lider) {
+	public proyecto(integrante Lider, String name) {
 		this.Terminado = false;
+		this.Name = name; 
 		this.Lider = Lider;
 		LocalDateTime fechaInicio = LocalDateTime.now();
 		this.fechaInicio =  fechaInicio;
 		integrantes.put(Lider.getName(), Lider);
 		
 	}
+	public void putStartdate(String fecha) {
+		
+	}
+	
+	public integrante getIntegrante(String name) {
+		integrante amigo = integrantes.get(name);
+		return amigo;
+		
+	}
+	public String getName() {
+		return Name;
+	}
+	
+	public boolean estaTerminado() {
+		return Terminado;
+	}
+	
+	public void putIntegrantes(HashMap <String, integrante> integrantes) {
+		this.integrantes = integrantes ;
+	}
 	
 	public void agregarIntegrante(integrante amigo) {
 		integrantes.put(amigo.getName(), amigo);
+		calcularTiempo();
 	}
 	
 	
 	public void agregarActividad(actividad act) {
-		actividades.put(act.getName(), act);
+		String tipo = act.getTipoActividad();
+		if (actividades.get(tipo) == null) {
+			actividades.put(tipo, new ArrayList<actividad>());
+		}
+		actividades.get(tipo).add(act);
+		calcularTiempo();
 	}
 	
-	public boolean finalizarActividad(actividad act) {
-		
-		boolean logrado= false;
-		String nameAct =  act.getName();
-		if (actividades.get(nameAct) != null)
-			actividadesFinalizadas.put(nameAct,  act);
-			actividades.remove(nameAct);
-			logrado = true;
-		return logrado;
+	public void finalizarActividad(actividad act) {
+
+		String tipo =  act.getTipoActividad();
+		System.out.println(tipo);
+		if (actividadesFinalizadas.get(tipo) == null)	
+			actividadesFinalizadas.put(tipo,  new ArrayList<actividad>());
+		actividadesFinalizadas.get(tipo).add(act);
+		calcularTiempo();
+
 	}
+	
+	
+	public void finalizarProyecto(String comentario) {
+		this.Terminado = true;
+		actividad acabar = new actividad("Proyecto finalizado","Administrativo", Lider);
+		registro finalAct = new registro(Lider, acabar);
+		registros.addLog(finalAct);
+		calcularTiempo();
+	}
+	
+	public int getTiempo() {
+		return tiempoTranscurrido;
+	}
+	
+	
 	
 	private void calcularTiempo(){
 		LocalDateTime fechaActual= LocalDateTime.now();
