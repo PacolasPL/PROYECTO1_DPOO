@@ -1,2 +1,2 @@
-Nicolas_Perez;nicoastri@gmail.com;123
-Jose_Daniel;j.daniel@uniandes.edu.co;soyPro
+Nicolas_Perez;nicoastri@gmail.com;123;Hera_Diosa:true,gokuhj:true,Goookuu:true
+Jose_Daniel;j.Daniel@gmail.com;1234;artemisa:true

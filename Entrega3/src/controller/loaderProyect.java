@@ -18,19 +18,38 @@ public class loaderProyect {
 		String linea = brUsuarios.readLine();
 		
 		while (linea != null) {
+			
 			String[] partes = linea.split(";");
 			String name =  partes[0];
 			String correo = partes[1];
 			String password = partes[2];
+			
 			integrante nuevo = new integrante(name, correo, password);
+			
+			
+			if (partes.length==4) {
+				String [] grupos = partes[3].split(",");
+				for ( int i = 0 ; i< grupos.length ; i++){
+					String[] pryData = grupos[i].split(":");
+					
+					nuevo.addProyect(pryData[0].strip(), pryData[1].strip());
+					
+					}
+				}
 			usuarios.put(name, nuevo);
+			
 			linea = brUsuarios.readLine();
 		}
 		brUsuarios.close();		
 		
 	}
-	public static controladorProyecto cargarArchivo(String archivo) throws FileNotFoundException, IOException{
+	
+	public static HashMap<String, integrante> getUserList() throws FileNotFoundException, IOException {
 		getUsuarios();
+		return usuarios;
+	}
+	public static controladorProyecto cargarArchivo(String archivo) throws FileNotFoundException, IOException{
+		
 		String proName = "";
 		String LiName= "";
 
@@ -102,12 +121,11 @@ public class loaderProyect {
 		}
 		brActividades.close();
 		
-		controladorProyecto controlador = new controladorProyecto(Proy);
+		controladorProyecto controlador = new controladorProyecto();
+		controlador.agregarProyecto(Proy);
 		
 		return controlador;
 			
-		
-		
 		
 	}
 	
