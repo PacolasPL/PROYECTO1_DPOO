@@ -12,42 +12,6 @@ public class loaderProyect {
 	
 	private static HashMap<String, integrante> usuarios= new HashMap<String, integrante>();
 	
-	
-	private static void getUsuarios() throws FileNotFoundException, IOException {
-		BufferedReader brUsuarios =  new BufferedReader(new FileReader("./data/usuarios.txt"));
-		String linea = brUsuarios.readLine();
-		
-		while (linea != null) {
-			
-			String[] partes = linea.split(";");
-			String name =  partes[0];
-			String correo = partes[1];
-			String password = partes[2];
-			
-			integrante nuevo = new integrante(name, correo, password);
-			
-			
-			if (partes.length==4) {
-				String [] grupos = partes[3].split(",");
-				for ( int i = 0 ; i< grupos.length ; i++){
-					String[] pryData = grupos[i].split(":");
-					
-					nuevo.addProyect(pryData[0].strip(), pryData[1].strip());
-					
-					}
-				}
-			usuarios.put(name, nuevo);
-			
-			linea = brUsuarios.readLine();
-		}
-		brUsuarios.close();		
-		
-	}
-	
-	public static HashMap<String, integrante> getUserList() throws FileNotFoundException, IOException {
-		getUsuarios();
-		return usuarios;
-	}
 	public static controladorProyecto cargarArchivo(String archivo) throws FileNotFoundException, IOException{
 		
 		String proName = "";
@@ -102,6 +66,7 @@ public class loaderProyect {
 		String actividad = brActividades.readLine();
 		
 		System.out.println("INICIANDO CARGA DE ACTIVIDADES\n");
+		
 		while (actividad != null) {
 			String[] actParts = actividad.split(";");
 			
@@ -109,13 +74,17 @@ public class loaderProyect {
 			actividad nuevAct = new actividad(actParts[0],actParts[1] , principal);
 			if (actParts[4].equals("false")) {
 				Proy.agregarActividad(nuevAct);
-				System.out.println("Se logro agregar una actividad NO terminada...");}
+				System.out.println("Se logro agregar una actividad NO terminada...");
+				principal.setActivitiesFinal(nuevAct);}
+				
 			
 			else if (actParts[4].equals( "true")) {
 				Proy.finalizarActividad(nuevAct);
 				System.out.println("Se logro agregar una SI terminada...");
+				principal.setActivities(nuevAct);
+			
+			
 			}
-
 			actividad = brActividades.readLine();
 			
 		}
@@ -128,6 +97,46 @@ public class loaderProyect {
 			
 		
 	}
+	
+
+	
+	public static HashMap<String, integrante> getUserList() throws FileNotFoundException, IOException {
+		
+		getUsuarios();
+		return usuarios;
+	}
+	
+	private static void getUsuarios() throws FileNotFoundException, IOException {
+		BufferedReader brUsuarios =  new BufferedReader(new FileReader("./data/usuarios.txt"));
+		String linea = brUsuarios.readLine();
+		
+		while (linea != null) {
+			
+			String[] partes = linea.split(";");
+			String name =  partes[0];
+			String correo = partes[1];
+			String password = partes[2];
+			
+			integrante nuevo = new integrante(name, correo, password);
+			
+			
+			if (partes.length==4) {
+				String [] grupos = partes[3].split(",");
+				for ( int i = 0 ; i< grupos.length ; i++){
+					String[] pryData = grupos[i].split(":");
+					
+					nuevo.addProyect(pryData[0].strip(), pryData[1].strip());
+					
+					}
+				}
+			usuarios.put(name, nuevo);
+			
+			linea = brUsuarios.readLine();
+		}
+		brUsuarios.close();		
+		
+	}
+	
 	
 	
 }

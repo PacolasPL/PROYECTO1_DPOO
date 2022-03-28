@@ -16,6 +16,7 @@ public class proyecto {
 	
 	
 	public proyecto(integrante Lider, String name) {
+		
 		this.Terminado = false;
 		this.Name = name; 
 		this.Lider = Lider;
@@ -26,15 +27,6 @@ public class proyecto {
 	}
 	public void putStartdate(String fecha) {
 		
-	}
-	
-	public integrante getIntegrante(String name) {
-		integrante amigo = integrantes.get(name);
-		return amigo;
-		
-	}
-	public String getName() {
-		return Name;
 	}
 	
 	public boolean estaTerminado() {
@@ -60,6 +52,45 @@ public class proyecto {
 		calcularTiempo();
 	}
 	
+
+	
+	public int getTiempo() {
+		return tiempoTranscurrido;
+	}
+	
+	public String getFechaInicial() {
+		return fechaInicio.toString();
+		
+	}
+	public String getLiderName() {
+		String name = Lider.getName();
+		return name;
+	}
+	
+	public integrante getIntegrante(String name) {
+		integrante amigo = integrantes.get(name);
+		return amigo;
+		
+	}
+	public String getIntegrantData(String name) {
+		integrante amigo = integrantes.get(name);
+		String data = "Nombre: " + amigo.getName() + "Correo: " + amigo.getCorreo(); 
+		return data;
+		
+	}
+	public String getName() {
+		return Name;
+	}
+	
+	
+	
+	private void calcularTiempo(){
+		LocalDateTime fechaActual= LocalDateTime.now();
+		int inicio = fechaInicio.getSecond();
+		int finalTime = fechaActual.getSecond();
+		int hours = (finalTime - inicio)/3600; 
+		this.tiempoTranscurrido = hours;
+	}
 	public void finalizarActividad(actividad act) {
 
 		String tipo =  act.getTipoActividad();
@@ -78,19 +109,5 @@ public class proyecto {
 		registro finalAct = new registro(Lider, acabar);
 		registros.addLog(finalAct);
 		calcularTiempo();
-	}
-	
-	public int getTiempo() {
-		return tiempoTranscurrido;
-	}
-	
-	
-	
-	private void calcularTiempo(){
-		LocalDateTime fechaActual= LocalDateTime.now();
-		int inicio = fechaInicio.getSecond();
-		int finalTime = fechaActual.getSecond();
-		int hours = (finalTime - inicio)/3600; 
-		this.tiempoTranscurrido = hours;
 	}
 }

@@ -23,6 +23,8 @@ public class aplicacion {
 	public void ejecutarAplicacion() throws FileNotFoundException, IOException {
 		boolean continuar = true;
 		
+		/*Primer while, aqui esta las opciones de registro e inicio de sesion.
+		  */
 		while (continuar) {
 			
 			System.out.println("---Project Manager---\n");
@@ -44,11 +46,24 @@ public class aplicacion {
 							crearProyecto();
 						}
 						
-						else if (eleccion ==3) {
-							System.out.println("Se han encontrado los siguientes proyectos\n");
-							System.out.println(controlador.getProyectsOfAmi(usuario)+ "\n");
-							System.out.println("¿A que proyecto quieres ingresar?\n");
+						else if (eleccion ==2) {
+							String info = controlador.getProyectsOfAmi(usuario);
+							if (info == null) {
+								System.out.println( "Usted no tiene proyectos..." + "\n");
+							}
+							else {
+								System.out.println("Se han encontrado los siguientes proyectos\n");
+							}
+							
 							ejecutarCargarDatos();
+							boolean ingreso = controlador.iniciarSesionProyecto(usuario.getName());
+							if (ingreso) {
+								menuInicial();
+							}
+							else {
+								System.out.println("\nNo perteneces a este proyecto. \nVolviendo a la pagina inicial...\n...");
+							}
+							
 							
 							
 						}
@@ -63,8 +78,13 @@ public class aplicacion {
 							}
 						
 						else if (eleccion ==3) {
-							System.out.println("Se han encontrado los siguientes proyectos\n");
-							System.out.println(controlador.getProyectsOfAmi(usuario)+ "\n");
+							String info = controlador.getProyectsOfAmi(usuario);
+							if (info == null) {
+								System.out.println( "Usted no tiene proyectos..." + "\n");
+							}
+							else {
+								System.out.println("Se han encontrado los siguientes proyectos\n");
+							}
 							
 						}
 					
@@ -161,14 +181,48 @@ public class aplicacion {
 		
 	}
 	
+	private void menuInicial() 
+	{
+		System.out.println("Sesion iniciada...\n\n");
+		System.out.println("\n" + controlador.getProjectInfo());
+		String actividades = controlador.getActividades(usuario);
+		showGeneralMenu();
+		int option  = Integer.parseInt( input("Elige una opcion."));
+		
+		
+		if (option == 1) {
+			System.out.println(actividades);
+		}
+		
+		
+		
+		
+	}
+	
+	
+	private void showGeneralMenu() {
+		System.out.println("Iniciemos el trabajo.\n¿Como pretendes iniciar?");
+		System.out.println("1. Ver tareas pendientes.");
+		System.out.println("2. Iniciar a trabajar en una actividad.");
+		System.out.println("3. Dar por finalizada una actividad.");
+		System.out.println("Elige una opcion.");
+		
+	
+	}
 	
 	private String ejecutarCargarDatos( ){
 		
-		String archivo = input("¿A que proyecto pertenece?\n-");
+		String archivo = input("-");
 		try
 		{
+			controladorProyecto xd = loaderProyect.cargarArchivo(archivo);
+			if (xd == null) {
+				
+			}
+			else {
 			controlador = loaderProyect.cargarArchivo(archivo);
 			System.out.println("Se cargó el archivo " + archivo + " con información del proyecto.");
+			}
 		}
 		catch(FileNotFoundException e) {
 			System.out.println("ERROR: el archivo indicado no se encontró.");

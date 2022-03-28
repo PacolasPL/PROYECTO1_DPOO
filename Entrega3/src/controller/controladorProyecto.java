@@ -11,6 +11,8 @@ public class controladorProyecto {
 	private proyecto Proy;
 	private HashMap<String, integrante> usuarios ;
 	
+	
+	
 	public void agregarProyecto(proyecto Proy) {
 		this.Proy= Proy;
 	}
@@ -20,11 +22,7 @@ public class controladorProyecto {
 		
 	}
 	
-	public String getProyectsOfAmi(integrante amigo ) {
-		String proyectos = amigo.getProyect().replace("[", "").replace("]", "");
-		return proyectos;
-		
-	}
+	
 	
 	public void addProyectsOfAmi(integrante amigo, String name, boolean isLider ) {
 		if (isLider) {
@@ -35,6 +33,40 @@ public class controladorProyecto {
 		}
 		
 	}
+	public String getProyectsOfAmi(integrante amigo ) {
+		String temp = amigo.getProyect();
+		if (temp == null) {
+			return temp;
+		}
+		else {
+			temp =  temp.replace("[", "").replace("]", "");
+			return temp;
+		}
+		
+	}
+	
+	public String getProjectInfo() {
+		
+		String data = "Bienvenido a " + Proy.getName()+".\n\n";
+		data += "Fecha de inicio: " + Proy.getFechaInicial()+ "\n";
+		data += "Tiempo transcurrido desde el inicio: " + Proy.getTiempo() + "\n";
+		data += "Creador del proyecto: " + Proy.getLiderName() + "\n";
+		return data;
+		
+	}
+	
+	public String getActividades(integrante Amigo)
+	{
+		return Amigo.mostrarPendientes();
+	}
+	
+	public void agregarActividad(String aCargoDe, String name, String tipoActividad) 
+	{
+		actividad act = new actividad(name, tipoActividad, usuarios.get(aCargoDe));
+		Proy.agregarActividad(act);
+		usuarios.get(aCargoDe).setActivities(act);;
+	}
+	
 	
 	public integrante iniciarSesion(String name, String pass) throws FileNotFoundException, IOException {
 		cargarUsuarios();
@@ -50,13 +82,13 @@ public class controladorProyecto {
 		
 	}
 	
-	public integrante iniciarSesionProyecto(String name, String pass) {
+	public boolean iniciarSesionProyecto(String name) {
 		integrante amigo= Proy.getIntegrante(name);
-		if (amigo.comparePass(pass)) {
-			return amigo;
+		if (amigo != null) {
+			return true;
 		}
 		else {
-			return null;
+			return false;
 		}
 	}
 	

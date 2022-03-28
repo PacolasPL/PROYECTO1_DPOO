@@ -1,2 +1,3 @@
-Nicolas_Perez;nicoastri@gmail.com;123;Hera_Diosa:true,gokuhj:true,Goookuu:true
+Nicolas_Perez;nicoastri@gmail.com;123;kenko:true
 Jose_Daniel;j.Daniel@gmail.com;1234;artemisa:true
+Monitor;monito@gmail.com;123

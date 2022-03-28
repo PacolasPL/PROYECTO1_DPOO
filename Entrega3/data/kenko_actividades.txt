@@ -1,6 +1,6 @@
 Inicio_app;administrativo;Nicolas_Perez;10293;false
 Creacion_datos;administrativo;Jose_Daniel;10293;true
-Borrar_Datos;administrativo;Nicolas_Perez;10293;false
+Borrar_Datos;administrativo;Nicolas_Perez;10293;true
 Reiniciando_servidor;administrativo;Jose_Daniel;10293;true
-Volviendo_a_inicio;administrativo;Nicolas_Perez;10293;false
+Volviendo_a_inicio;administrativo;Nicolas_Perez;10293;true
 Finalizandos;administrativo;Jose_Daniel;10293;true
