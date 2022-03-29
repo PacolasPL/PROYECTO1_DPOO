@@ -4,7 +4,7 @@ import java.util.*;
 
 public class registroActividad {
 	
-	private ArrayList<registro> registros;
+	private ArrayList<registro> registros = new ArrayList<registro>();
 	
 	public registroActividad(integrante Lider) {
 		actividad creacion = new actividad("Creacion proyecto", "Administrativa" ,Lider);

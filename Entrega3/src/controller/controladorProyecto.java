@@ -10,7 +10,8 @@ public class controladorProyecto {
 	
 	private proyecto Proy;
 	private HashMap<String, integrante> usuarios ;
-	
+	private actividad ActividadActual;
+	private registro registroActual;
 	
 	
 	public void agregarProyecto(proyecto Proy) {
@@ -22,7 +23,17 @@ public class controladorProyecto {
 		
 	}
 	
+	public void iniciarActividad(integrante amigo, actividad act) {
+		this.ActividadActual = act;
+		this.registroActual = new registro(amigo, act);
+	}
 	
+	public void finalizarTurno(integrante amigo) {
+		
+		int timeToAdd = registroActual.terminarTurno("Termine");
+		ActividadActual.actualizarTiempo(timeToAdd);
+		Proy.addLog(registroActual);
+	}
 	
 	public void addProyectsOfAmi(integrante amigo, String name, boolean isLider ) {
 		

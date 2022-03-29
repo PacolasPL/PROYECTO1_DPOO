@@ -12,7 +12,7 @@ public class proyecto {
 	private boolean Terminado;
 	private HashMap<String, ArrayList<actividad>> actividades = new HashMap<String, ArrayList<actividad>>();
 	private HashMap<String, ArrayList<actividad>> actividadesFinalizadas = new HashMap<String, ArrayList<actividad>>();
-	private registroActividad registros;
+	private registroActividad registros ;
 	
 	
 	public proyecto(integrante Lider, String name) {
@@ -22,8 +22,13 @@ public class proyecto {
 		this.Lider = Lider;
 		LocalDateTime fechaInicio = LocalDateTime.now();
 		this.fechaInicio =  fechaInicio;
+		this.registros = new registroActividad(Lider);
 		integrantes.put(Lider.getName(), Lider);
 		
+	}
+	
+	public void addLog(registro Log) {
+		registros.addLog(Log);
 	}
 	public void putStartdate(String fecha) {
 		
