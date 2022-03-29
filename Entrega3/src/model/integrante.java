@@ -29,11 +29,15 @@ public class integrante {
 		
 	}
 	
+	public actividad getActividad(int opt) {
+		String[] toUse = actividades.keySet().toString().replace("[", "").replace("]", "").split(",");
+		actividad act = actividades.get(toUse[opt].strip());
+		return act ;
+	}
+	
 	public String mostrarPendientes()
 	{
-		System.out.println("\n" + actividades.keySet().toString());
 		String[] toUse = actividades.keySet().toString().replace("[", "").replace("]", "").split(",");
-		System.out.println(toUse);
 		String show = "";
 		for (int i = 0 ; i< actividades.size(); i++) {
 			show += Integer.toString(i+1)+ ". "+ actividades.get(toUse[i].strip()).getName() +", la cuales es de tipo " + actividades.get(toUse[i].strip()).getTipoActividad();

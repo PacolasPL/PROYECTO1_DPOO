@@ -203,6 +203,10 @@ public class aplicacion {
 		if (option == 1) {
 			System.out.println(actividades);
 		}
+		else if(option == 2) {
+			System.out.println(actividades);
+			iniciarActividad();
+		}
 		
 		
 		
@@ -245,6 +249,15 @@ public class aplicacion {
 		return archivo;
 		
 		
+		
+	}
+	
+	private void iniciarActividad() {
+		
+		int option = Integer.parseInt(input("Seleccione una la actividad en la que trabajara: "));
+		actividad act = controlador.getAmigoActividad(usuario, option);
+		controlador.iniciarActividad(usuario, act);
+		System.out.println("\nACTIVIDAD INICIAD....\n\nIniciando: " + act.getName());
 		
 	}
 	

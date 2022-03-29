@@ -23,6 +23,10 @@ public class controladorProyecto {
 		
 	}
 	
+	public actividad getAmigoActividad(integrante amigo, int option) {
+		return amigo.getActividad(option-1);
+	}
+	
 	public void iniciarActividad(integrante amigo, actividad act) {
 		this.ActividadActual = act;
 		this.registroActual = new registro(amigo, act);
