@@ -47,16 +47,25 @@ public class aplicacion {
 						}
 						
 						else if (eleccion ==2) {
+							
 							String info = controlador.getProyectsOfAmi(usuario);
 							if (info == null) {
-								System.out.println( "Usted no tiene proyectos..." + "\n");
+								System.out.println( "\nUsted no tiene proyectos..." + "\n");
 							}
 							else {
-								System.out.println("Se han encontrado los siguientes proyectos\n");
+								System.out.println("\nSe han encontrado los siguientes proyectos\n");
+								System.out.println(info);
 							}
 							
 							ejecutarCargarDatos();
-							boolean ingreso = controlador.iniciarSesionProyecto(usuario.getName());
+							boolean ingreso = false;
+							
+							if (controlador.isNullProy()) {
+								System.out.println("\nPor favor, cree el proyecto");
+							}
+							else {
+								ingreso = controlador.iniciarSesionProyecto(usuario.getName());
+							}
 							if (ingreso) {
 								menuInicial();
 							}
@@ -80,10 +89,11 @@ public class aplicacion {
 						else if (eleccion ==3) {
 							String info = controlador.getProyectsOfAmi(usuario);
 							if (info == null) {
-								System.out.println( "Usted no tiene proyectos..." + "\n");
+								System.out.println( "\nUsted no tiene proyectos..." + "\n");
 							}
 							else {
-								System.out.println("Se han encontrado los siguientes proyectos\n");
+								System.out.println("\nSe han encontrado los siguientes proyectos\n");
+								System.out.println(info);
 							}
 							
 						}
@@ -91,7 +101,7 @@ public class aplicacion {
 				
 				
 			
-			}
+				}
 			}
 			else {
 				option = Integer.parseInt(input("-"));
@@ -205,7 +215,6 @@ public class aplicacion {
 		System.out.println("1. Ver tareas pendientes.");
 		System.out.println("2. Iniciar a trabajar en una actividad.");
 		System.out.println("3. Dar por finalizada una actividad.");
-		System.out.println("Elige una opcion.");
 		
 	
 	}

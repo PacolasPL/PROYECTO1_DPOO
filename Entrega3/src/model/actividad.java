@@ -15,6 +15,11 @@ public class actividad {
 		this.principal = amigo.getName();
 		aCargoDe.add(amigo);
 	}
+	
+	public void  actualizarTiempo(int agregar) {
+		tiempoTranscurrido += agregar;
+	}
+	
 	public String getPrincipal(){
 		return principal;
 	}

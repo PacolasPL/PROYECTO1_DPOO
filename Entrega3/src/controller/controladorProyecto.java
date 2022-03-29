@@ -25,6 +25,7 @@ public class controladorProyecto {
 	
 	
 	public void addProyectsOfAmi(integrante amigo, String name, boolean isLider ) {
+		
 		if (isLider) {
 			amigo.addProyect(name, "true");
 		}
@@ -34,6 +35,7 @@ public class controladorProyecto {
 		
 	}
 	public String getProyectsOfAmi(integrante amigo ) {
+		
 		String temp = amigo.getProyect();
 		if (temp == null) {
 			return temp;
@@ -56,11 +58,13 @@ public class controladorProyecto {
 	}
 	
 	public String getActividades(integrante Amigo)
+	
 	{
 		return Amigo.mostrarPendientes();
 	}
 	
 	public void agregarActividad(String aCargoDe, String name, String tipoActividad) 
+	
 	{
 		actividad act = new actividad(name, tipoActividad, usuarios.get(aCargoDe));
 		Proy.agregarActividad(act);
@@ -83,8 +87,18 @@ public class controladorProyecto {
 	}
 	
 	public boolean iniciarSesionProyecto(String name) {
+
 		integrante amigo= Proy.getIntegrante(name);
-		if (amigo != null) {
+		if (amigo != null ) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean isNullProy() {
+		if (Proy == null) {
 			return true;
 		}
 		else {

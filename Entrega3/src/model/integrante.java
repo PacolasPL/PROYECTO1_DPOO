@@ -5,8 +5,8 @@ public class integrante {
 	private String name;
 	private String correo;
 	private String password;
-	private ArrayList<actividad> actividades = new ArrayList<actividad>();
-	private ArrayList<actividad> actividadesHechas = new ArrayList<actividad>();
+	private HashMap<String, actividad> actividades = new HashMap<String, actividad>();
+	private HashMap<String, actividad>actividadesHechas = new HashMap<String, actividad>();
 	private HashMap<String, String> proyectos;
 	
 	public integrante(String name, String correo, String password) {
@@ -19,19 +19,25 @@ public class integrante {
 	}
 	
 	public void setActivities(actividad activity) {
-		actividades.add(activity);
+		actividades.put(activity.getName(), activity);
 	}
 	
 	
 	public void setActivitiesFinal(actividad activity) {
-		actividadesHechas.add(activity);
+		
+		actividadesHechas.put(activity.getName(), activity);
+		
 	}
 	
 	public String mostrarPendientes()
 	{
+		System.out.println("\n" + actividades.keySet().toString());
+		String[] toUse = actividades.keySet().toString().replace("[", "").replace("]", "").split(",");
+		System.out.println(toUse);
 		String show = "";
 		for (int i = 0 ; i< actividades.size(); i++) {
-			show += Integer.toString(i+1)+ ". "+ actividades.get(i).getName() +", la cuales es de tipo " + actividades.get(i).getTipoActividad();
+			show += Integer.toString(i+1)+ ". "+ actividades.get(toUse[i].strip()).getName() +", la cuales es de tipo " + actividades.get(toUse[i].strip()).getTipoActividad();
+			System.out.println("\n" + toUse[i].strip());
 			show += "\n";
 		}
 		return show;
