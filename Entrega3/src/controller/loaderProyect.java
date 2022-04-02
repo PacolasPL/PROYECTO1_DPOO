@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-
 public class loaderProyect {
 	
 	private static HashMap<String, integrante> usuarios= new HashMap<String, integrante>();

@@ -6,6 +6,8 @@ import java.time.*;
 
 import model.integrante;
 
+import java.io.File;
+
 public class fileWriter {
 
 	
@@ -85,34 +87,57 @@ public class fileWriter {
 	}
 	
 	
-	public void writeProy(String name, integrante Lider) {
+	public void writeProy(String name, integrante Lider) throws IOException {
 			LocalDateTime creacionTime = LocalDateTime.now();
 			try (
-				BufferedReader lector= new BufferedReader(new FileReader("./data/proyectos.txt"));
+				BufferedReader lector = new BufferedReader(new FileReader("./data/proyectos.txt"));
 			){
 				String linea = lector.readLine();
 				String datos = "";
-				while (linea !=null) {
+				
+				while (linea != null) {
 					datos+= linea + "\n";
 					String[] partes = linea.split(";");
 					
 					if ( name.equals(partes[0])) {
 						System.out.println("ERROR. Ese nombre ya existe.");
-						return;
 					}
 					
+					boolean result = crearArchivos(name);
+					
+					if(result) {
+						System.out.println("Los archivos fueron creados con éxito.");
+					}
+					else {
+						System.out.println("Alguno de los 3 archivos anteriores no pudo ser creado");
+					}
 					linea = lector.readLine();
 				}
-				try(BufferedWriter escritor= new BufferedWriter(new FileWriter("./data/proyectos.txt"))){
+				
+			try(BufferedWriter escritor= new BufferedWriter(new FileWriter("./data/proyectos.txt"))){
 					escritor.write(datos);
 					escritor.append(name + ";" + Lider.getName() + ";"+ true+";" + creacionTime.toString() +";"+ "0");
 				}
 					
 				
 			}
-			catch(IOException e) {
-				
-			}
 			
 		}
+	
+	public boolean crearArchivos(String name) throws IOException {
+		try {
+			String dir = System.getProperty("user.dir");
+			File archivoPrincipal = new File(dir + "/data/" + name + ".txt");
+			File archivoActividades = new File(dir + "/data/" + name + "_actividades.txt");
+			File archivoIntegrantes = new File(dir + "/data/" + name + "_integrantes.txt");
+			boolean seCreoP = archivoPrincipal.createNewFile();
+			boolean seCreoA = archivoActividades.createNewFile();
+			boolean seCreoI = archivoIntegrantes.createNewFile();
+			return (seCreoP & seCreoA & seCreoI);
+		}
+		catch(IOException e) {
+			System.out.println("ERROR. IOException");
+			return false;
+		}
+	}
 }

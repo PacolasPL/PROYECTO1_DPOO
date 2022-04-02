@@ -9,7 +9,7 @@ import model.*;
 public class controladorProyecto {
 	
 	private proyecto Proy;
-	private HashMap<String, integrante> usuarios ;
+	private HashMap<String, integrante> usuarios;
 	private actividad ActividadActual;
 	private registro registroActual;
 	
@@ -17,6 +17,17 @@ public class controladorProyecto {
 	public void agregarProyecto(proyecto Proy) {
 		this.Proy= Proy;
 	}
+	
+	public void acabarActividad(String comentario, integrante usuario) {
+        int minutosTranscurridos = registroActual.terminarTurno(comentario);
+        this.ActividadActual.actualizarTiempo(minutosTranscurridos);
+        
+        fileWriter actualizacion = new fileWriter();
+        try {
+			actualizacion.actualizarUsuario(usuario);
+		} catch (IOException e) {
+		}
+    }
 	
 	private void  cargarUsuarios() throws FileNotFoundException, IOException {
 		this.usuarios = loaderProyect.getUserList();
@@ -29,7 +40,8 @@ public class controladorProyecto {
 	
 	public void iniciarActividad(integrante amigo, actividad act) {
 		this.ActividadActual = act;
-		this.registroActual = new registro(amigo, act);
+		registro registroNuevo = new registro(amigo, act);
+		this.registroActual = registroNuevo;
 	}
 	
 	public void finalizarTurno(integrante amigo) {

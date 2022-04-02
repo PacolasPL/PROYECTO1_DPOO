@@ -1,4 +1,1 @@
 kenko;Nicolas_Perez;true;2022-03-27T21:13:23.622541;0
-artemisa;Nicolas_Perez;true;2022-03-27T21:29:39.970984;0
-Hera_Diosa;Nicolas_Perez;true;2022-03-27T22:48:06.774369;0
-;Nicolas_Perez;true;2022-03-29T01:40:25.274304;0

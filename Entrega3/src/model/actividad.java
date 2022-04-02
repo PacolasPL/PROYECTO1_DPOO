@@ -30,9 +30,11 @@ public class actividad {
 		int inicioT =  inicio.getSecond();
 		return inicioT;
 		}
+	
 	public String getTipoActividad() {
 		return tipoActividad;
 	}
+	
 	public String getName() {
 		return name;
 	}

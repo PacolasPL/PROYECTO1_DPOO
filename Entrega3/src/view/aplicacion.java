@@ -175,7 +175,7 @@ public class aplicacion {
 		}
 		}
 	
-	private boolean crearProyecto() {
+	private boolean crearProyecto() throws IOException {
 		
 		boolean logrado = false;
 		System.out.println("Iniciando creacion de proyecto...\n");
@@ -207,7 +207,9 @@ public class aplicacion {
 			System.out.println(actividades);
 			iniciarActividad();
 		}
-		
+		else if(option == 3) {
+			acabarActividad();
+		}
 		
 		
 		
@@ -223,18 +225,15 @@ public class aplicacion {
 	
 	}
 	
-	private String ejecutarCargarDatos( ){
+	private String ejecutarCargarDatos(){
 		
 		String archivo = input("-");
 		try
 		{
-			controladorProyecto xd = loaderProyect.cargarArchivo(archivo);
-			if (xd == null) {
-				
-			}
-			else {
-			controlador = loaderProyect.cargarArchivo(archivo);
-			System.out.println("Se cargó el archivo " + archivo + " con información del proyecto.");
+			controladorProyecto control = loaderProyect.cargarArchivo(archivo);
+			if (control != null) {
+				controlador = loaderProyect.cargarArchivo(archivo);
+				System.out.println("Se cargó el archivo " + archivo + " con información del proyecto.");
 			}
 		}
 		catch(FileNotFoundException e) {
@@ -256,10 +255,17 @@ public class aplicacion {
 		
 		int option = Integer.parseInt(input("Seleccione una la actividad en la que trabajara: "));
 		actividad act = controlador.getAmigoActividad(usuario, option);
-		controlador.iniciarActividad(usuario, act);
-		System.out.println("\nACTIVIDAD INICIAD....\n\nIniciando: " + act.getName());
+		controlador.iniciarActividad(this.usuario, act);
+		System.out.println("\nACTIVIDAD INICIADA...\n\nIniciando: " + act.getName());
 		
 	}
+	
+	private void acabarActividad() {
+        String comentarios = input("Escriba los comentarios de finalizado de la actividad:\n ");
+        controlador.acabarActividad(comentarios, this.usuario);
+        System.out.println("\nACTIVIDAD FINALIZADA");
+
+    }
 	
 	public String input(String mensaje)
 	{

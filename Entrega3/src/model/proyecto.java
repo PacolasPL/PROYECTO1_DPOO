@@ -12,7 +12,7 @@ public class proyecto {
 	private boolean Terminado;
 	private HashMap<String, ArrayList<actividad>> actividades = new HashMap<String, ArrayList<actividad>>();
 	private HashMap<String, ArrayList<actividad>> actividadesFinalizadas = new HashMap<String, ArrayList<actividad>>();
-	private registroActividad registros ;
+	private registroActividad registros;
 	
 	
 	public proyecto(integrante Lider, String name) {
@@ -67,6 +67,7 @@ public class proyecto {
 		return fechaInicio.toString();
 		
 	}
+	
 	public String getLiderName() {
 		String name = Lider.getName();
 		return name;
@@ -77,17 +78,17 @@ public class proyecto {
 		return amigo;
 		
 	}
+	
 	public String getIntegrantData(String name) {
 		integrante amigo = integrantes.get(name);
 		String data = "Nombre: " + amigo.getName() + "Correo: " + amigo.getCorreo(); 
 		return data;
 		
 	}
+	
 	public String getName() {
 		return Name;
 	}
-	
-	
 	
 	private void calcularTiempo(){
 		LocalDateTime fechaActual= LocalDateTime.now();
@@ -96,6 +97,7 @@ public class proyecto {
 		int hours = (finalTime - inicio)/3600; 
 		this.tiempoTranscurrido = hours;
 	}
+	
 	public void finalizarActividad(actividad act) {
 
 		String tipo =  act.getTipoActividad();
@@ -106,7 +108,6 @@ public class proyecto {
 		calcularTiempo();
 
 	}
-	
 	
 	public void finalizarProyecto(String comentario) {
 		this.Terminado = true;
