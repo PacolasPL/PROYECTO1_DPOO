@@ -196,9 +196,11 @@ public class aplicacion {
 		System.out.println("Sesion iniciada...\n\n");
 		System.out.println("\n" + controlador.getProjectInfo());
 		String actividades = controlador.getActividades(usuario);
+		
 		boolean cont =  true;
 		while (cont) {
 			showGeneralMenu();
+			showBossMenu();
 			int option  = Integer.parseInt( input("Elige una opcion."));
 			
 			
@@ -235,6 +237,14 @@ public class aplicacion {
 		System.out.println("3. Dar por finalizada una actividad.");
 		
 	
+	}
+	
+	private void showBossMenu() {
+		System.out.println("----OPCIONES ADMINISTRATIVAS----");
+		System.out.println("4. Agregar y asignar actividad.");
+		System.out.println("5. Agregar miembros al equipo.");
+		System.out.println("6 Dar proyecto por finalizado.");
+		
 	}
 	
 	private String ejecutarCargarDatos(){

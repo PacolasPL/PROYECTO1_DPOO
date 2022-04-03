@@ -25,6 +25,8 @@ public class actividad {
 	}
 	
 	
+
+	
 	public int trabajar(integrante amigo) {
 		LocalDateTime inicio =  LocalDateTime.now();
 		int inicioT =  inicio.getSecond();

@@ -173,4 +173,16 @@ public class fileWriter {
 			return false;
 		}
 	}
+	public void createFirstData(File aI, File aA, integrante usuario) throws IOException {
+		String caminoI = aI.getAbsolutePath();
+		String caminoA = aA.getAbsolutePath();
+		
+		BufferedWriter escritorI =  new BufferedWriter(new FileWriter(caminoI));
+		escritorI.write(usuario.getName() + "\n");
+		escritorI.close();
+		
+		BufferedWriter escritorA =  new BufferedWriter(new FileWriter(caminoA));
+		escritorA.write("Creacion_proyecto;administrativo;" + usuario.getName() + ";0;false");
+		escritorA.close();
+	}
 }
