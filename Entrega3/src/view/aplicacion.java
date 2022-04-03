@@ -207,7 +207,7 @@ public class aplicacion {
 			System.out.println(actividades);
 			iniciarActividad();
 		}
-		else if(option == 3) {
+		else if(option == 3) { 
 			acabarActividad();
 		}
 		
