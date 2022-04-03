@@ -2,6 +2,7 @@ package model;
 
 import java.util.*;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class proyecto {
 	private integrante Lider;
@@ -37,10 +38,22 @@ public class proyecto {
 	
 	public void putStartdate(String fecha) {
 		
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") ;
+		LocalDateTime inicio = LocalDateTime.parse(fecha, format);
+		System.out.println(inicio.toString());
+		this.fechaInicio = inicio;
+	}
+	
+	public void putCurrentTime(String seconds) {
+		this.tiempoTranscurrido = Integer.parseInt(seconds);
 	}
 	
 	public boolean estaTerminado() {
 		return Terminado;
+	}
+	
+	public void actualizarTiempo(int adicion) {
+		this.tiempoTranscurrido += adicion;
 	}
 	
 	public void putIntegrantes(HashMap <String, integrante> integrantes) {
@@ -59,10 +72,8 @@ public class proyecto {
 			actividades.put(tipo, new ArrayList<actividad>());
 		}
 		actividades.get(tipo).add(act);
-		calcularTiempo();
-	}
-	
 
+	}
 	
 	public int getTiempo() {
 		return tiempoTranscurrido;

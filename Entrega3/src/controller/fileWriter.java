@@ -106,7 +106,7 @@ public class fileWriter {
 					boolean result = crearArchivos(name, Lider);
 					
 					if(result) {
-						System.out.println("Los archivos fueron creados con éxito.");
+						System.out.println("Los archivos fueron creados con ï¿½xito.");
 					}
 					else {
 						System.out.println("Alguno de los 3 archivos anteriores no pudo ser creado");
@@ -124,7 +124,44 @@ public class fileWriter {
 			
 		}
 	
+<<<<<<< Updated upstream
 	public boolean crearArchivos(String name, integrante usuario) throws IOException {
+=======
+	
+	public void actualizarProy(String name, integrante Lider,String inicio, int TiempoTranscurrido ) throws IOException {
+
+		try (
+			BufferedReader lector = new BufferedReader(new FileReader("./data/proyectos.txt"));
+		){
+			String linea = lector.readLine();
+			String datos = "";
+			
+			while (linea != null) {
+				
+				String[] partes = linea.split(";");
+				
+				if ( name.equals(partes[0])) {
+					String temp = name +";" +  Lider.getName() + ";"+ "true"  +";" + inicio.toString() + ";" + Integer.toString(TiempoTranscurrido) + "\n";
+					datos += temp;
+				}
+				else {
+					datos+= linea + "\n";
+				}
+				linea = lector.readLine();
+			}
+			
+		try(BufferedWriter escritor= new BufferedWriter(new FileWriter("./data/proyectos.txt"))){
+				escritor.write(datos);
+				
+			}
+				
+			
+		}
+		
+	}
+	
+	public boolean crearArchivos(String name) throws IOException {
+>>>>>>> Stashed changes
 		try {
 			String dir = System.getProperty("user.dir");
 			File archivoActividades = new File(dir + "/data/" + name + "_actividades.txt");

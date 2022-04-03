@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 
+
 import model.*;
 
 public class controladorProyecto {
@@ -14,14 +15,20 @@ public class controladorProyecto {
 	private registro registroActual;
 	
 	
-	public void agregarProyecto(proyecto Proy) {
+	public void agregarProyecto(proyecto Proy) throws FileNotFoundException, IOException {
+		cargarUsuarios();
 		this.Proy= Proy;
 	}
 	
+	public String getCurrentLog() {
+		return registroActual.getAmigoName();
+	}
+	
 	public void acabarActividad(String comentario, integrante usuario) {
-        int minutosTranscurridos = registroActual.terminarTurno(comentario);
+        int minutosTranscurridos = Math.abs(registroActual.terminarTurno(comentario));
         this.ActividadActual.actualizarTiempo(minutosTranscurridos);
-        
+        Proy.actualizarTiempo(minutosTranscurridos);
+        System.out.println(registroActual.createString());
         fileWriter actualizacion = new fileWriter();
         try {
 			actualizacion.actualizarUsuario(usuario);
@@ -61,6 +68,27 @@ public class controladorProyecto {
 		}
 		
 	}
+	
+	public int getMinutes() {
+		return Proy.getTiempo() ;
+	}
+	
+	public String getName() {
+		return Proy.getName() ;
+	}
+	
+	
+	public String getStartTime() {
+		return Proy.getFechaInicial();
+	}
+	
+	public integrante getLider()
+	{
+		String liderName =  Proy.getLiderName();
+		integrante amigo =  usuarios.get(liderName);
+		return amigo ;
+	}
+	
 	public String getProyectsOfAmi(integrante amigo ) {
 		
 		String temp = amigo.getProyect();

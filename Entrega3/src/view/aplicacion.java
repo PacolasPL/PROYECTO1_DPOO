@@ -196,22 +196,42 @@ public class aplicacion {
 		System.out.println("Sesion iniciada...\n\n");
 		System.out.println("\n" + controlador.getProjectInfo());
 		String actividades = controlador.getActividades(usuario);
-		showGeneralMenu();
-		int option  = Integer.parseInt( input("Elige una opcion."));
+		boolean cont =  true;
+		while (cont) {
+			showGeneralMenu();
+			int option  = Integer.parseInt( input("Elige una opcion."));
+			
+			
+			if (option == 1) {
+				System.out.println(actividades);
+			}
+			else if(option == 2) {
+				System.out.println(actividades);
+				iniciarActividad();
+			}
+			else if(option == 3) {
+				acabarActividad();
+			}
+			else if(option == 0) {
+				fileWriter actualizador = new fileWriter();
+				try {
+					actualizador.actualizarProy(controlador.getName() , controlador.getLider() , controlador.getStartTime(), controlador.getMinutes());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				System.out.println("YA TERMINAMOS....\nSALIENDO DE LA APLICACION...");
+				cont = false;
+			}
 		
-		
-		if (option == 1) {
-			System.out.println(actividades);
 		}
-		else if(option == 2) {
-			System.out.println(actividades);
-			iniciarActividad();
-		}
+<<<<<<< Updated upstream
 		else if(option == 3) { 
 			acabarActividad();
 		}
 		
 		
+=======
+>>>>>>> Stashed changes
 		
 	}
 	
@@ -256,7 +276,7 @@ public class aplicacion {
 		int option = Integer.parseInt(input("Seleccione una la actividad en la que trabajara: "));
 		actividad act = controlador.getAmigoActividad(usuario, option);
 		controlador.iniciarActividad(this.usuario, act);
-		System.out.println("\nACTIVIDAD INICIADA...\n\nIniciando: " + act.getName());
+		System.out.println("\nACTIVIDAD INICIADA...\n\nIniciando: \n" + act.getName());
 		
 	}
 	

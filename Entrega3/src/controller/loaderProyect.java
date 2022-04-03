@@ -15,6 +15,12 @@ public class loaderProyect {
 		
 		String proName = "";
 		String LiName= "";
+<<<<<<< Updated upstream
+=======
+		String dateString = "";
+		String timeString= "";
+
+>>>>>>> Stashed changes
 		
 		BufferedReader br =  new BufferedReader(new FileReader("./data/proyectos.txt"));
 		String linea = br.readLine();
@@ -26,8 +32,12 @@ public class loaderProyect {
 			System.out.println(partes[0]);
 			if (partes[0].equals(archivo) ) {
 				continuar = false;
-				proName = partes[0];
-				LiName =  partes[1];
+				
+				
+				proName = partes[0].strip();
+				LiName =  partes[1].strip();
+				dateString = partes[3].strip();
+				timeString= partes[4].strip();
 			}	
 			linea = br.readLine();
 			
@@ -35,7 +45,7 @@ public class loaderProyect {
 		
 		br.close();
 		
-		if (continuar == true) {
+		if (continuar ) {
 			System.out.println("PROYECTO NO ENCONTRADO.");
 			return null;
 		}
@@ -59,6 +69,10 @@ public class loaderProyect {
 		
 		proyecto Proy = new proyecto(Lider, proName);
 		Proy.putIntegrantes(integrantes);
+		dateString = dateString.replace("T"," ").substring(0,19);
+		Proy.putStartdate(dateString);
+		System.out.println(timeString+ " ACAAAAA ");
+		Proy.putCurrentTime(timeString);
 		
 		BufferedReader brActividades =  new BufferedReader(new FileReader("./data/" + proName + "_actividades.txt"));
 		String actividad = brActividades.readLine();

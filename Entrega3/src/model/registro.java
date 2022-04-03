@@ -1,12 +1,13 @@
 package model;
 import java.time.*;
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 public class registro {
 	private LocalDateTime inicio;
 	private String aCargoDe;
 	private String actividadTrabajada;
 	private String comentarios;
-	private int minutosTranscurrido;
+	private int segundosTranscurrido;
 	private LocalDateTime tiempoFinalizado;
 
 	
@@ -26,11 +27,12 @@ public class registro {
 	
 	public String createString() {
 		String data = "";
-		data += "Amigo: " + aCargoDe;
 		data += "\nActividad: " + actividadTrabajada +"\n";
-		data += "\nComentarios:\n";
-		data += comentarios;
-		
+		data += "Amigo: " + aCargoDe;
+		data += "\nFecha de Inicio: " + inicio.toString() +"\n";
+		data += "\nComentarios: "+ comentarios;
+		data += "\nTiempo transcurrido: " +  Math.abs((segundosTranscurrido/3600)) + " horas, "+ Math.abs((segundosTranscurrido%3600)/60)  +" minutos y " +Integer.toString(Math.abs(segundosTranscurrido%60))+ " segundos." ;
+		data += "\nFecha de finalizacion de turno: " + tiempoFinalizado.toString() +"\n";
 		return data;
 		
 	}
@@ -38,9 +40,10 @@ public class registro {
 	public int terminarTurno(String comentario) {
 		this.comentarios = comentario;
 		tiempoFinalizado = LocalDateTime.now();
-		this.minutosTranscurrido = (tiempoFinalizado.getSecond() - inicio.getSecond())/60;
-		
-		return  minutosTranscurrido;
+		long seconds = SECONDS.between(tiempoFinalizado, inicio);
+		int sec =  (int)seconds;
+		this.segundosTranscurrido = sec;
+		return segundosTranscurrido ;
 		
 	}
 }

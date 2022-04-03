@@ -1,4 +1,4 @@
-Nicolas_Perez;nicoastri@gmail.com;123;kenko:true
+Nicolas_Perez;nicoastri@gmail.com;123;1:true,kenko:true
 Jose_Daniel;j.Daniel@gmail.com;123;kenko:true
 Monitor;monito@gmail.com;123
 Invitado;invitado@gmail.com;123
