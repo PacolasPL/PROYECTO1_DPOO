@@ -2,8 +2,10 @@ package controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 import model.*;
 
@@ -109,7 +111,13 @@ public class controladorProyecto {
 	public void finalizarTurno(integrante amigo) {
 		
 		int timeToAdd = registroActual.terminarTurno("Termine");
-		ActividadActual.actualizarTiempo(timeToAdd);
+		String act = ActividadActual.getName();
+		String tipo = ActividadActual.getTipoActividad();
+		
+		actividad activity = Proy.buscarActividad(act, tipo);
+		
+		activity.actualizarTiempo(timeToAdd);
+		
 		Proy.addLog(registroActual);
 	}
 	
@@ -194,7 +202,7 @@ public class controladorProyecto {
 	
 	{
 		actividad act = new actividad(name, tipoActividad, usuarios.get(aCargoDe));
-		Proy.agregarActividad(act);
+		Proy.agregarActividad(act); 
 		usuarios.get(aCargoDe).setActivities(act);;
 	}
 	
@@ -242,6 +250,22 @@ public class controladorProyecto {
 	}
 	
 	// Retorna un boolean en base a si el atributo Proy es igual a null o no.
+	
+	public void addLog(String name,String act,  String fecha1, String fecha2) {
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") ;
+		LocalDateTime tiempo1 = LocalDateTime.parse(fecha1, format);
+		LocalDateTime tiempo2 = LocalDateTime.parse(fecha2, format);
+		
+		long time = SECONDS.between(tiempo1, tiempo2);
+		int timeFinal = (int)time;
+		integrante amigo = usuarios.get(name);
+		actividad acti = new actividad(act, "Fuera de tiempo", amigo);
+		registro log = new registro(amigo, acti);
+		log.putAll( tiempo1, tiempo2, timeFinal);
+		Proy.addLog(log);
+		
+		
+	}
 	
 	public boolean isNullProy() {
 		if (Proy == null) {

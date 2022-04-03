@@ -1,5 +1,8 @@
-Hacer mas actualizaciones;Administracion;Jose_Daniel;0;true
-Actualizar_datos;administrativo;Nicolas_Perez;0;true
-NewParchiiis;administrativo;Jose_Daniel;0;true
-NewParchiiis;administrativo;Jose_Daniel;0;true
-pruebas_generales;gerencia;Jose_Daniel;0;true
+pruebas_generales;gerencia;Nicolas_Perez;27;true
+NewParchiiis;administrativo;Jose_Daniel;67;false
+Actualizar_datos;administrativo;Nicolas_Perez;0;false
+NewParchiiis;administrativo;Jose_Daniel;6;false
+No se que mas;administrativo;Invitado;68;false
+Sacarme de latinoamerica;administrativa;Invitado;0;false
+Integracion Al grupo;gerencia;Nicolas_Perez;76;false
+Hacer mas actualizaciones;Administracion;Jose_Daniel;0;false

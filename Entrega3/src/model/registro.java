@@ -35,6 +35,13 @@ public class registro {
 		data += "\nFecha de finalizacion de turno: " + tiempoFinalizado.toString() +"\n";
 		return data;
 		
+		
+	}
+	
+	public void putAll(LocalDateTime inicio, LocalDateTime finaL , int tiempoFinal ) {
+		this.comentarios = "Hecho fuera de tiempo";
+		this.tiempoFinalizado = finaL;
+		this.segundosTranscurrido = tiempoFinal;
 	}
 	
 	public int terminarTurno(String comentario) {

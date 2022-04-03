@@ -137,11 +137,29 @@ public class proyecto {
 		}
 	}
 	
+	public actividad buscarActividad(String act, String tipo) {
+		int punt = 0;
+		if (actividades.get(tipo) != null) {
+			
+			for (int i = 0; i < actividades.get(tipo).size(); i++){
+				punt= i;
+				if (actividades.get(tipo).get(i).getName() ==  act) {
+					return actividades.get(tipo).get(i);
+				}
+			
+			}
+			
+		}
+		return actividades.get(tipo).get(punt);
+	}
 	public void guardarActividades() throws IOException {
 		fileWriter escritor = new fileWriter();
 		String [] temp =actividadesFinalizadas.keySet().toString().replace("[","").replace("]", "").split(",") ;
+
 		boolean pass = (temp.length > 0);
-		escritor.updateActivities(Name, actividades, actividadesFinalizadas, pass);
+		String [] temp2 =actividades.keySet().toString().replace("[","").replace("]", "").split(",") ;
+		boolean pas = (temp2.length > 0);
+		escritor.updateActivities(Name, actividades, actividadesFinalizadas, pas, pass);
 		
 		
 		
@@ -215,7 +233,7 @@ public class proyecto {
 	public void finalizarActividad(actividad act) {
 
 		String tipo =  act.getTipoActividad();
-		System.out.println(tipo);
+
 		if (actividadesFinalizadas.get(tipo) == null)	
 			actividadesFinalizadas.put(tipo,  new ArrayList<actividad>());
 		actividadesFinalizadas.get(tipo).add(act);

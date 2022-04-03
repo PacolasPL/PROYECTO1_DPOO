@@ -12,9 +12,9 @@ import java.io.File;
 
 public class fileWriter {
 
-	// La clase fileWriter solo posee métodos para operar la escritura en archivos.
+	// La clase fileWriter solo posee mï¿½todos para operar la escritura en archivos.
 	
-	// Se escribe la información del nombre, correo y contraseña de un usuario dentro del archivo de usuarios.
+	// Se escribe la informaciï¿½n del nombre, correo y contraseï¿½a de un usuario dentro del archivo de usuarios.
 	
 	public void writeUser(String name, String correo, String password) {
 		
@@ -49,7 +49,7 @@ public class fileWriter {
 		
 	}
 	
-	// Se actualiza la información de un integrante dado en el archivo de usuarios.
+	// Se actualiza la informaciï¿½n de un integrante dado en el archivo de usuarios.
 	
 	public void actualizarUsuario(integrante amigo) throws IOException {
 		
@@ -93,7 +93,7 @@ public class fileWriter {
 		
 	}
 	
-	// Se escribe la información de un proyecto en el archivo de proyectos.
+	// Se escribe la informaciï¿½n de un proyecto en el archivo de proyectos.
 	
 	public void writeProy(String name, integrante Lider) throws IOException {
 			LocalDateTime creacionTime = LocalDateTime.now();
@@ -132,7 +132,7 @@ public class fileWriter {
 			
 		}
 	
-	// Se actualiza la información de un proyecto dentro del archivo de proyectos.
+	// Se actualiza la informaciï¿½n de un proyecto dentro del archivo de proyectos.
 	
 	public void actualizarProy(String name, integrante Lider,String inicio, int TiempoTranscurrido ) throws IOException {
 
@@ -166,7 +166,7 @@ public class fileWriter {
 		
 	}
 	
-	// Se crean los archivos de un proyecto específico.
+	// Se crean los archivos de un proyecto especï¿½fico.
 	
 	public boolean crearArchivos(String name) throws IOException {
 		try {
@@ -185,7 +185,7 @@ public class fileWriter {
 		}
 	}
 	
-	// Se añade la información predeterminada a los archivos creados previamente.
+	// Se aï¿½ade la informaciï¿½n predeterminada a los archivos creados previamente.
 	
 	public void createFirstData(File aI, File aA, integrante usuario) throws IOException {
 		String caminoI = aI.getAbsolutePath();
@@ -200,26 +200,32 @@ public class fileWriter {
 		escritorA.close();
 	}
 	
-	public void updateActivities(String name, HashMap<String, ArrayList<actividad>> actividades, HashMap<String,ArrayList<actividad>> pendientes, boolean doNo) throws IOException {
+	public void updateActivities(String name, HashMap<String, ArrayList<actividad>> pendientes , HashMap<String,ArrayList<actividad>> actividades,boolean pass, boolean doNo) throws IOException {
 		String toWrite = "";
 		String[] parts= actividades.keySet().toString().replace("[","").replace("]" ,"").split(",");
-		 
-		for (int i = 0; i< parts.length; i++) {
-			ArrayList<actividad> listTemp= actividades.get(parts[i].strip());
-			for (int j = 0; j< listTemp.size(); j++) {
-				actividad act = listTemp.get(j);
-				System.out.println("\n Guardnado cambios en " + act.getName() +"\n");
-				toWrite += act.getName() + ";"+ act.getTipoActividad()+ ";" + act.getPrincipal()+ ";" + Integer.toString(act.getTiempoTranscurrido()) + ";" + "true\n";
+		System.out.println( actividades.keySet().toString());
+		if (pass) {
+			for (int i = 0; i< parts.length; i++) {
+				ArrayList<actividad> listTemp= actividades.get(parts[i].strip());
+				if (listTemp != null) {
+				for (int j = 0; j< listTemp.size(); j++) {
+					actividad act = listTemp.get(j);
+					System.out.println("\n Guardnado cambios en " + act.getName() +"\n");
+					toWrite += act.getName() + ";"+ act.getTipoActividad()+ ";" + act.getPrincipal()+ ";" + Integer.toString(act.getTiempoTranscurrido()) + ";" + "true\n";
+				}
+				}
 			}
 		}
 		parts= pendientes.keySet().toString().replace("[","").replace("]" ,"").split(",");
 		if (doNo) {
 			for (int i = 0; i< parts.length; i++) {
 				ArrayList<actividad> listTemp= pendientes.get(parts[i].strip());
+				if (listTemp != null) {
 				for (int j = 0; j< listTemp.size(); j++) {
 					actividad act = listTemp.get(j);
 					System.out.println("\n Guardnado cambios en " + act.getName() +"\n");
-					toWrite += act.getName() + ";"+ act.getTipoActividad()+ ";" + act.getPrincipal()+ ";" + Integer.toString(act.getTiempoTranscurrido()) + ";" + "true\n";
+					toWrite += act.getName() + ";"+ act.getTipoActividad()+ ";" + act.getPrincipal()+ ";" + Integer.toString(act.getTiempoTranscurrido()) + ";" + "false\n";
+				}
 				}
 			}
 		}
@@ -238,7 +244,7 @@ public class fileWriter {
 		
 		String temp = "";
 		for (int i = 0;  i<names.length ; i++) {
-			temp+= names[i] + "\n";
+			temp+= names[i].strip() + "\n";
 			
 		}
 		BufferedWriter escritor  =  new BufferedWriter (new FileWriter("./data/" + name + "_integrantes.txt"));

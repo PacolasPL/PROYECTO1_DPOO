@@ -205,7 +205,7 @@ public class aplicacion {
 				showBossMenu();
 			}
 			
-			int option  = Integer.parseInt( input("Elige una opcion."));
+			int option  = Integer.parseInt( input("\nElige una opcion.\n- "));
 			
 			
 			if (option == 1) {
@@ -218,13 +218,24 @@ public class aplicacion {
 			else if(option == 3) {
 				acabarActividad();
 			}
-			else if (option == 4 && isJefe) {
-				System.out.println(controlador.getIntegrantes());
-				String name = input("Por favor, escriba el nombre del usuario...");
+			
+			else if (option == 4) {
+				String nombre = input("Escriba quien realizo la actividad:\n- ");
+				String nombreAct = input("\nEscriba que actividad se realizo:\n- ");
+				String fecha1 = input("\nEscribe la fecha de inicio en este formato: (yyyy-MM-dd HH:mm:ss)\n- " );
+				String fecha2 = input("\nEscribe la fecha de inicio en este formato: (yyyy-MM-dd HH:mm:ss)\n- " );
+				
+				controlador.addLog(nombre, nombreAct, fecha1, fecha2);
+				
+			}
+			
+			else if (option == 6 && isJefe) {
+				System.out.println(controlador.getIntegrantes()+ "\n");
+				String name = input("\nPor favor, escriba el nombre del usuario...");
 				if (controlador.isIntegrante(name)) {
-					String actividad = input("Digite el nombre de la nueva actividad:\n- ").strip();
+					String actividad = input("\nDigite el nombre de la nueva actividad:\n- ").strip();
 					System.out.println("\nLos tipos de actividades son los siguientes:\n"+ controlador.getActividades());
-					String tipoActividad = input("Digite el nombre del tipo de actividad:\n");
+					String tipoActividad = input("\nDigite el nombre del tipo de actividad:\n");
 					controlador.agregarActividad(name, actividad, tipoActividad);
 					
 					System.out.println(controlador.getActividad(actividad, tipoActividad));
@@ -249,7 +260,21 @@ public class aplicacion {
 				}
 				
 				
+			
 			}
+			
+			else if (option == 5 && isJefe) {
+				String name = input("Por favor, escriba el nombre del usuario que desea agregar: \n-.");
+				if (controlador.getUsuario(name) == null) {
+					System.out.println("\nEse nombre aun no esta registrado en nuestra base de datos:\n");
+				}
+				else {
+					controlador.agregarIntegrante(controlador.getUsuario(name));
+					System.out.println("\nIntegrante agregado con exito\n");
+					System.out.println("\nEsta es la nueva lista de integrantes: \n-" + controlador.getIntegrantes()+ "\n");
+				}
+			}
+				
 			else if (option ==0) {
 				fileWriter actualizador = new fileWriter();
 				System.out.print("\nOpcion No Valida\n");
@@ -275,15 +300,16 @@ public class aplicacion {
 		System.out.println("1. Ver tareas pendientes.");
 		System.out.println("2. Iniciar a trabajar en una actividad.");
 		System.out.println("3. Dar por finalizada una actividad.");
+		System.out.println("4. Registrar trabajos de una persona offline.");
 		
 	
 	}
 	
 	private void showBossMenu() {
 		System.out.println("----OPCIONES ADMINISTRATIVAS----");
-		System.out.println("4. Agregar y asignar actividad.");
+		System.out.println("6. Agregar y asignar actividad.");
 		System.out.println("5. Agregar miembros al equipo.");
-		System.out.println("6 Dar proyecto por finalizado.");
+		System.out.println("7 Dar proyecto por finalizado.");
 		
 	}
 	

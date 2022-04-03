@@ -88,16 +88,18 @@ public class loaderProyect {
 			actividad nuevAct = new actividad(actParts[0].strip(),actParts[1].strip() , principal);
 			nuevAct.setTiempo(Integer.parseInt(actParts[3].strip()));
 			
-			if (actParts[4].equals("false")) {
+			if (actParts[4].strip().equals("false")) {
 				Proy.agregarActividad(nuevAct);
 				System.out.println("Se logro agregar una actividad NO terminada...");
-				principal.setActivitiesFinal(nuevAct);}
+				
+				
+				principal.setActivities(nuevAct);}
 				
 			
-			else if (actParts[4].equals( "true")) {
+			else if (actParts[4].strip().equals( "true")) {
 				Proy.finalizarActividad(nuevAct);
 				System.out.println("Se logro agregar una SI terminada...");
-				principal.setActivities(nuevAct);
+				principal.setActivitiesFinal(nuevAct);
 			
 			
 			}
@@ -122,7 +124,7 @@ public class loaderProyect {
 		return usuarios;
 	}
 	
-	// Se añade los proyectos segun el archivo de usuarios a un usuario dado.
+	// Se aï¿½ade los proyectos segun el archivo de usuarios a un usuario dado.
 	
 	private static void getUsuarios() throws FileNotFoundException, IOException {
 		BufferedReader brUsuarios =  new BufferedReader(new FileReader("./data/usuarios.txt"));
