@@ -31,11 +31,6 @@ public class proyecto {
 	public void addLog(registro Log) {
 		registros.addLog(Log);
 	}
-	
-	public registroActividad getRegistros() {
-		return this.registros;
-	}
-	
 	public void putStartdate(String fecha) {
 		
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") ;
@@ -62,7 +57,7 @@ public class proyecto {
 	
 	public void agregarIntegrante(integrante amigo) {
 		integrantes.put(amigo.getName(), amigo);
-		calcularTiempo();
+	
 	}
 	
 	
@@ -106,7 +101,7 @@ public class proyecto {
 		return Name;
 	}
 	
-	private void calcularTiempo(){
+	private void calcularTiempoDesdeInicio(){
 		LocalDateTime fechaActual= LocalDateTime.now();
 		int inicio = fechaInicio.getSecond();
 		int finalTime = fechaActual.getSecond();
@@ -121,7 +116,7 @@ public class proyecto {
 		if (actividadesFinalizadas.get(tipo) == null)	
 			actividadesFinalizadas.put(tipo,  new ArrayList<actividad>());
 		actividadesFinalizadas.get(tipo).add(act);
-		calcularTiempo();
+
 
 	}
 	
@@ -130,6 +125,6 @@ public class proyecto {
 		actividad acabar = new actividad("Proyecto finalizado","Administrativo", Lider);
 		registro finalAct = new registro(Lider, acabar);
 		registros.addLog(finalAct);
-		calcularTiempo();
+
 	}
 }

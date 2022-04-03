@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
-kenko;Nicolas_Perez;true;2022-03-27T21:13:23.622541;0
 temis;Jose_Daniel;true;2022-04-02T19:27:40.808122;0
 temis;Jose_Daniel;true;2022-04-02T19:31:49.793074500;0
-=======
-kenko;Nicolas_Perez;true;2022-04-02T19:23:44;16
-1;Nicolas_Perez;true;2022-04-02T18:12:17;0
->>>>>>> Stashed changes
+kenko;Nicolas_Perez;true;2022-04-02T20:31:15;5
+
+1;Nicolas_Perez;true;2022-04-02T20:30:23.572619;0

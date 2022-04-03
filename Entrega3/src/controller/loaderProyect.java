@@ -15,12 +15,9 @@ public class loaderProyect {
 		
 		String proName = "";
 		String LiName= "";
-<<<<<<< Updated upstream
-=======
 		String dateString = "";
 		String timeString= "";
 
->>>>>>> Stashed changes
 		
 		BufferedReader br =  new BufferedReader(new FileReader("./data/proyectos.txt"));
 		String linea = br.readLine();

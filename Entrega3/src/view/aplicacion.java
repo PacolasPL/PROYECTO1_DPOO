@@ -224,14 +224,6 @@ public class aplicacion {
 			}
 		
 		}
-<<<<<<< Updated upstream
-		else if(option == 3) { 
-			acabarActividad();
-		}
-		
-		
-=======
->>>>>>> Stashed changes
 		
 	}
 	

@@ -103,7 +103,7 @@ public class fileWriter {
 						System.out.println("ERROR. Ese nombre ya existe.");
 					}
 					
-					boolean result = crearArchivos(name, Lider);
+					boolean result = crearArchivos(name);
 					
 					if(result) {
 						System.out.println("Los archivos fueron creados con �xito.");
@@ -124,9 +124,6 @@ public class fileWriter {
 			
 		}
 	
-<<<<<<< Updated upstream
-	public boolean crearArchivos(String name, integrante usuario) throws IOException {
-=======
 	
 	public void actualizarProy(String name, integrante Lider,String inicio, int TiempoTranscurrido ) throws IOException {
 
@@ -161,34 +158,19 @@ public class fileWriter {
 	}
 	
 	public boolean crearArchivos(String name) throws IOException {
->>>>>>> Stashed changes
 		try {
 			String dir = System.getProperty("user.dir");
+			File archivoPrincipal = new File(dir + "/data/" + name + ".txt");
 			File archivoActividades = new File(dir + "/data/" + name + "_actividades.txt");
 			File archivoIntegrantes = new File(dir + "/data/" + name + "_integrantes.txt");
+			boolean seCreoP = archivoPrincipal.createNewFile();
 			boolean seCreoA = archivoActividades.createNewFile();
 			boolean seCreoI = archivoIntegrantes.createNewFile();
-			
-			createFirstData(archivoIntegrantes, archivoActividades, usuario);
-			
-			return (seCreoA & seCreoI);
+			return (seCreoP & seCreoA & seCreoI);
 		}
 		catch(IOException e) {
 			System.out.println("ERROR. IOException");
 			return false;
 		}
-	}
-	
-	public void createFirstData(File aI, File aA, integrante usuario) throws IOException {
-		String caminoI = aI.getAbsolutePath();
-		String caminoA = aA.getAbsolutePath();
-		
-		BufferedWriter escritorI =  new BufferedWriter(new FileWriter(caminoI));
-		escritorI.write(usuario.getName() + "\n");
-		escritorI.close();
-		
-		BufferedWriter escritorA =  new BufferedWriter(new FileWriter(caminoA));
-		escritorA.write("Creacion_proyecto;administrativo;" + usuario.getName() + ";0;false");
-		escritorA.close();
 	}
 }
