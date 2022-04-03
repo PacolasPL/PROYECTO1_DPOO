@@ -10,6 +10,9 @@ import java.io.File;
 
 public class fileWriter {
 
+	// La clase fileWriter solo posee métodos para operar la escritura en archivos.
+	
+	// Se escribe la información del nombre, correo y contraseña de un usuario dentro del archivo de usuarios.
 	
 	public void writeUser(String name, String correo, String password) {
 		
@@ -43,6 +46,8 @@ public class fileWriter {
 		}
 		
 	}
+	
+	// Se actualiza la información de un integrante dado en el archivo de usuarios.
 	
 	public void actualizarUsuario(integrante amigo) throws IOException {
 		
@@ -86,6 +91,7 @@ public class fileWriter {
 		
 	}
 	
+	// Se escribe la información de un proyecto en el archivo de proyectos.
 	
 	public void writeProy(String name, integrante Lider) throws IOException {
 			LocalDateTime creacionTime = LocalDateTime.now();
@@ -124,6 +130,7 @@ public class fileWriter {
 			
 		}
 	
+	// Se actualiza la información de un proyecto dentro del archivo de proyectos.
 	
 	public void actualizarProy(String name, integrante Lider,String inicio, int TiempoTranscurrido ) throws IOException {
 
@@ -157,6 +164,8 @@ public class fileWriter {
 		
 	}
 	
+	// Se crean los archivos de un proyecto específico.
+	
 	public boolean crearArchivos(String name) throws IOException {
 		try {
 			String dir = System.getProperty("user.dir");
@@ -173,6 +182,9 @@ public class fileWriter {
 			return false;
 		}
 	}
+	
+	// Se añade la información predeterminada a los archivos creados previamente.
+	
 	public void createFirstData(File aI, File aA, integrante usuario) throws IOException {
 		String caminoI = aI.getAbsolutePath();
 		String caminoA = aA.getAbsolutePath();
