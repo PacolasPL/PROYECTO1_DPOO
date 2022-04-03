@@ -15,7 +15,6 @@ public class loaderProyect {
 		
 		String proName = "";
 		String LiName= "";
-
 		
 		BufferedReader br =  new BufferedReader(new FileReader("./data/proyectos.txt"));
 		String linea = br.readLine();

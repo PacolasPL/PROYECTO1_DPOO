@@ -30,6 +30,11 @@ public class proyecto {
 	public void addLog(registro Log) {
 		registros.addLog(Log);
 	}
+	
+	public registroActividad getRegistros() {
+		return this.registros;
+	}
+	
 	public void putStartdate(String fecha) {
 		
 	}

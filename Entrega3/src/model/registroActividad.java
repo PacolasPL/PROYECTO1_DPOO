@@ -12,10 +12,10 @@ public class registroActividad {
 		registros.add(inicial);
 		
 	}
+	
 	public void addLog(registro log ) {
 		registros.add(log);
 	}
-	
 	
 
 }
