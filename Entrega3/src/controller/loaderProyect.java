@@ -68,7 +68,6 @@ public class loaderProyect {
 		Proy.putIntegrantes(integrantes);
 		dateString = dateString.replace("T"," ").substring(0,19);
 		Proy.putStartdate(dateString);
-		System.out.println(timeString+ " ACAAAAA ");
 		Proy.putCurrentTime(timeString);
 		
 		BufferedReader brActividades =  new BufferedReader(new FileReader("./data/" + proName + "_actividades.txt"));
@@ -79,8 +78,10 @@ public class loaderProyect {
 		while (actividad != null) {
 			String[] actParts = actividad.split(";");
 			
-			integrante principal =  usuarios.get(actParts[2]);
-			actividad nuevAct = new actividad(actParts[0],actParts[1] , principal);
+			integrante principal =  usuarios.get(actParts[2].strip());
+			actividad nuevAct = new actividad(actParts[0].strip(),actParts[1].strip() , principal);
+			nuevAct.setTiempo(Integer.parseInt(actParts[3].strip()));
+			
 			if (actParts[4].equals("false")) {
 				Proy.agregarActividad(nuevAct);
 				System.out.println("Se logro agregar una actividad NO terminada...");

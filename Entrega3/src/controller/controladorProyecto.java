@@ -41,8 +41,32 @@ public class controladorProyecto {
 		
 	}
 	
+	public void actualizarIntegrantes() throws IOException {
+		Proy.actualizarIntegrantes();
+	}
+	
 	public actividad getAmigoActividad(integrante amigo, int option) {
 		return amigo.getActividad(option-1);
+	}
+	
+	
+	public boolean isIntegrante(String name) {
+		if (Proy.getIntegrante(name) == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+		
+	}
+	
+	public integrante getUsuario(String name) {
+		return usuarios.get(name);
+	}
+	
+	public String getActividad(String act, String tipo) {
+		String mensaje = Proy.getActividad(act, tipo);
+		return mensaje;
 	}
 	
 	public void iniciarActividad(integrante amigo, actividad act) {
@@ -126,6 +150,10 @@ public class controladorProyecto {
 		usuarios.get(aCargoDe).setActivities(act);;
 	}
 	
+	public String getIntegrantes() {
+		String list = Proy.getIntegrantes();
+		return list ;
+	}
 	
 	public integrante iniciarSesion(String name, String pass) throws FileNotFoundException, IOException {
 		cargarUsuarios();
@@ -139,6 +167,14 @@ public class controladorProyecto {
 		
 		
 		
+	}
+	
+	public void agregarIntegrante(integrante amigo) {
+		Proy.agregarIntegrante(amigo);
+	}
+	
+	public String getActividades() {
+		return Proy.getActividades();
 	}
 	
 	public boolean iniciarSesionProyecto(String name) {
@@ -161,5 +197,9 @@ public class controladorProyecto {
 		}
 	}
 	
+	
+	public void guardarActividades() throws IOException {
+		Proy.guardarActividades();
+	}
 
 }

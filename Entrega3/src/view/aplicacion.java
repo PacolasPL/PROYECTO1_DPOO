@@ -191,7 +191,7 @@ public class aplicacion {
 		
 	}
 	
-	private void menuInicial() 
+	private void menuInicial() throws IOException 
 	{
 		System.out.println("Sesion iniciada...\n\n");
 		System.out.println("\n" + controlador.getProjectInfo());
@@ -200,7 +200,11 @@ public class aplicacion {
 		boolean cont =  true;
 		while (cont) {
 			showGeneralMenu();
-			showBossMenu();
+			boolean isJefe = usuario.getName().equals(controlador.getLider().getName());
+			if (isJefe) {
+				showBossMenu();
+			}
+			
 			int option  = Integer.parseInt( input("Elige una opcion."));
 			
 			
@@ -214,18 +218,54 @@ public class aplicacion {
 			else if(option == 3) {
 				acabarActividad();
 			}
-			else if(option == 0) {
+			else if (option == 4 && isJefe) {
+				System.out.println(controlador.getIntegrantes());
+				String name = input("Por favor, escriba el nombre del usuario...");
+				if (controlador.isIntegrante(name)) {
+					String actividad = input("Digite el nombre de la nueva actividad:\n- ").strip();
+					System.out.println("\nLos tipos de actividades son los siguientes:\n"+ controlador.getActividades());
+					String tipoActividad = input("Digite el nombre del tipo de actividad:\n");
+					controlador.agregarActividad(name, actividad, tipoActividad);
+					
+					System.out.println(controlador.getActividad(actividad, tipoActividad));
+					
+					
+				}
+				
+				
+			
+				
+		
+		}
+			else if (option == 5 && isJefe) {
+				String name = input("Por favor, escriba el nombre del usuario que desea agregar: \n-.");
+				if (controlador.getUsuario(name) == null) {
+					System.out.println("\nEse nombre aun no esta registrado en nuestra base de datos:\n");
+				}
+				else {
+					controlador.agregarIntegrante(controlador.getUsuario(name));
+					System.out.println("\nIntegrante agregado con exito\n");
+					System.out.println("\nEsta es la nueva lista de integrantes: \n-" + controlador.getIntegrantes()+ "\n");
+				}
+				
+				
+			}
+			else if (option ==0) {
 				fileWriter actualizador = new fileWriter();
+				System.out.print("\nOpcion No Valida\n");
 				try {
 					actualizador.actualizarProy(controlador.getName() , controlador.getLider() , controlador.getStartTime(), controlador.getMinutes());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				
+				controlador.guardarActividades();
+				controlador.actualizarIntegrantes();
+				
 				System.out.println("YA TERMINAMOS....\nSALIENDO DE LA APLICACION...");
 				cont = false;
 			}
-		
-		}
+			}
 		
 	}
 	

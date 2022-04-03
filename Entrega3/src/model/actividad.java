@@ -24,8 +24,9 @@ public class actividad {
 		return principal;
 	}
 	
-	
-
+	public void setTiempo(int tiempo) {
+		this.tiempoTranscurrido = tiempo;
+	}
 	
 	public int trabajar(integrante amigo) {
 		LocalDateTime inicio =  LocalDateTime.now();

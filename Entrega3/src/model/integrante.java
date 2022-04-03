@@ -19,6 +19,7 @@ public class integrante {
 	}
 	
 	public void setActivities(actividad activity) {
+		
 		actividades.put(activity.getName(), activity);
 	}
 	

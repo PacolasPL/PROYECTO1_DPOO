@@ -1,6 +1,10 @@
 package model;
 
 import java.util.*;
+
+import controller.fileWriter;
+
+import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
@@ -43,6 +47,14 @@ public class proyecto {
 		this.tiempoTranscurrido = Integer.parseInt(seconds);
 	}
 	
+	public void actualizarIntegrantes() throws IOException {
+		String[] names = integrantes.keySet().toString().replace("[","").replace("]" ,"").split(",");
+		
+		fileWriter neeF =  new fileWriter( );
+		neeF.actualizarIntegrantes(Name, names);
+		
+	}
+	
 	public boolean estaTerminado() {
 		return Terminado;
 	}
@@ -60,6 +72,9 @@ public class proyecto {
 	
 	}
 	
+	public String getActividades() {
+		return actividades.keySet().toString()  ;
+		}
 	
 	public void agregarActividad(actividad act) {
 		String tipo = act.getTipoActividad();
@@ -68,6 +83,43 @@ public class proyecto {
 		}
 		actividades.get(tipo).add(act);
 
+	}
+	
+	public String getActividad(String act, String tipo) {
+		if (actividades.get(tipo) == null) {
+			return "\nNO SE LOGRO AGREGAR.\n";
+		}
+		else {
+			
+			for (int i = 0; i < actividades.get(tipo).size(); i++){
+				
+				if (actividades.get(tipo).get(i).getName() ==  act) {
+					return "\nSI SE LOGROOOO\n";
+				}
+			
+			}
+			return "NO SE LOGRO";
+			
+		}
+	}
+	
+	public void guardarActividades() throws IOException {
+		fileWriter escritor = new fileWriter();
+		String [] temp =actividadesFinalizadas.keySet().toString().replace("[","").replace("]", "").split(",") ;
+		boolean pass = (temp.length > 0);
+		escritor.updateActivities(Name, actividades, actividadesFinalizadas, pass);
+		
+		
+		
+	}
+	
+	public String getIntegrantes() {
+		String temp = "";
+		String[] ints = integrantes.keySet().toString().replace("[", "").replace("]", "").split(",");
+		for (int i = 0; i< ints.length; i++ ) {
+			temp += "\n- "+ ints[i].strip();
+		}
+		return temp;
 	}
 	
 	public int getTiempo() {
@@ -100,14 +152,14 @@ public class proyecto {
 	public String getName() {
 		return Name;
 	}
-	
+/*
 	private void calcularTiempoDesdeInicio(){
 		LocalDateTime fechaActual= LocalDateTime.now();
 		int inicio = fechaInicio.getSecond();
 		int finalTime = fechaActual.getSecond();
 		int hours = (finalTime - inicio)/3600; 
 		this.tiempoTranscurrido = hours;
-	}
+	}*/
 	
 	public void finalizarActividad(actividad act) {
 

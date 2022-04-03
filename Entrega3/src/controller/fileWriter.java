@@ -3,6 +3,8 @@ package controller;
 import java.io.*;
 import java.io.IOException;
 import java.time.*;
+import java.util.*;
+import model.*;
 
 import model.integrante;
 
@@ -185,4 +187,53 @@ public class fileWriter {
 		escritorA.write("Creacion_proyecto;administrativo;" + usuario.getName() + ";0;false");
 		escritorA.close();
 	}
+	
+	public void updateActivities(String name, HashMap<String, ArrayList<actividad>> actividades, HashMap<String,ArrayList<actividad>> pendientes, boolean doNo) throws IOException {
+		String toWrite = "";
+		String[] parts= actividades.keySet().toString().replace("[","").replace("]" ,"").split(",");
+		 
+		for (int i = 0; i< parts.length; i++) {
+			ArrayList<actividad> listTemp= actividades.get(parts[i].strip());
+			for (int j = 0; j< listTemp.size(); j++) {
+				actividad act = listTemp.get(j);
+				System.out.println("\n Guardnado cambios en " + act.getName() +"\n");
+				toWrite += act.getName() + ";"+ act.getTipoActividad()+ ";" + act.getPrincipal()+ ";" + Integer.toString(act.getTiempoTranscurrido()) + ";" + "true\n";
+			}
+		}
+		parts= pendientes.keySet().toString().replace("[","").replace("]" ,"").split(",");
+		if (doNo) {
+			for (int i = 0; i< parts.length; i++) {
+				ArrayList<actividad> listTemp= pendientes.get(parts[i].strip());
+				for (int j = 0; j< listTemp.size(); j++) {
+					actividad act = listTemp.get(j);
+					System.out.println("\n Guardnado cambios en " + act.getName() +"\n");
+					toWrite += act.getName() + ";"+ act.getTipoActividad()+ ";" + act.getPrincipal()+ ";" + Integer.toString(act.getTiempoTranscurrido()) + ";" + "true\n";
+				}
+			}
+		}
+		
+		BufferedWriter escritor  =  new BufferedWriter (new FileWriter("./data/" + name + "_actividades.txt"));
+		
+		escritor.write(toWrite);
+		escritor.close();
+		
+		
+		
+	}
+	
+	public void actualizarIntegrantes(String name , String[] names) throws IOException {
+		
+		
+		String temp = "";
+		for (int i = 0;  i<names.length ; i++) {
+			temp+= names[i] + "\n";
+			
+		}
+		BufferedWriter escritor  =  new BufferedWriter (new FileWriter("./data/" + name + "_integrantes.txt"));
+		
+		escritor.write(temp);
+		escritor.close();
+		
+	}
+	
 }
