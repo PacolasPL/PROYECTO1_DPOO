@@ -9,7 +9,13 @@ import java.util.HashMap;
 
 public class loaderProyect {
 	
+	// La clase loaderProyect solo posee un atributo:
+	//
+	// Un HashMap con los usuarios de un proyecto dado.
+	
 	private static HashMap<String, integrante> usuarios= new HashMap<String, integrante>();
+	
+	// Se carga un archivo en base al nombre del proyecto que se desee cargar.
 	
 	public static controladorProyecto cargarArchivo(String archivo) throws FileNotFoundException, IOException{
 		
@@ -108,13 +114,15 @@ public class loaderProyect {
 		
 	}
 	
-
+	// Se retorna los usuarios dentro del HashMap del loaderProyect.
 	
 	public static HashMap<String, integrante> getUserList() throws FileNotFoundException, IOException {
 		
 		getUsuarios();
 		return usuarios;
 	}
+	
+	// Se añade los proyectos segun el archivo de usuarios a un usuario dado.
 	
 	private static void getUsuarios() throws FileNotFoundException, IOException {
 		BufferedReader brUsuarios =  new BufferedReader(new FileReader("./data/usuarios.txt"));
